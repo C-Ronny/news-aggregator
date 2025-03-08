@@ -1,2 +1,7 @@
-<h1>Welcome to News Aggregator</h1>
-<p>Your personalized news feed will appear here.</p>
+<h1>Top Headlines</h1>
+<div *ngFor="let article of articles" class="article-card">
+  <h2>{{ article.title }}</h2>
+  <p>{{ article.description }}</p>
+  <a [href]="article.url" target="_blank">Read more</a>
+  <button (click)="saveArticle(article)">Save Article</button>
+</div>
