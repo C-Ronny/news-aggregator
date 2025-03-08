@@ -51,7 +51,13 @@ export class SupabaseService {
     return { data, error };
   }
 
-
+  async fetchSavedArticles(userId: string) {
+    const { data, error } = await this.supabase
+      .from('saved_articles')
+      .select('*')
+      .eq('user_id', userId);
+    return { data, error };
+  }
 
   async saveArticle(userId: string, article: any) {
     const { data, error } = await this.supabase
@@ -74,5 +80,12 @@ export class SupabaseService {
     return data.user;
   }
 
+  async deleteArticle(articleId: string) {
+    const { data, error } = await this.supabase
+      .from('saved_articles')
+      .delete()
+      .eq('id', articleId);
+    return { data, error };
+  }
 
 }
