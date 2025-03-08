@@ -1,17 +1,21 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Login / Sign Up</mat-card-title>
+    <mat-card-title>{{ isLoginMode ? 'Login' : 'Sign Up' }}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form>
+    <form (ngSubmit)="onSubmit()">
       <mat-form-field>
-        <input matInput placeholder="Email" [(ngModel)]="email" name="firstName" type="email" required>
+        <input matInput placeholder="Email" type="email" [(ngModel)]="email" name="email" required>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Password" [(ngModel)]="password" name="firstName" type="password" required>
+        <input matInput placeholder="Password" type="password" [(ngModel)]="password" name="password" required>
       </mat-form-field>
-      <button mat-raised-button color="primary">Login</button>
-      <button mat-raised-button color="accent">Sign Up</button>
+      <button mat-raised-button color="primary" type="submit">
+        {{ isLoginMode ? 'Login' : 'Sign Up' }}
+      </button>
+      <button mat-button type="button" (click)="switchMode()">
+        {{ isLoginMode ? 'Create an account' : 'Already have an account? Login' }}
+      </button>
     </form>
   </mat-card-content>
 </mat-card>
