@@ -11,8 +11,15 @@ export class NewsService {
 
   constructor(private http: HttpClient) { }
 
-  getTopHeadlines(){
-    return this.http.get(`${this.apiUrl}/top-headlines?country=us&apiKey=${this.apiKey}`);
+  getTopHeadlines(categories?: string[], sources?: string[]) {
+    let url = `${this.apiUrl}/top-headlines?country=us&apiKey=${this.apiKey}`;
+    if (categories && categories.length > 0) {
+      url += `&category=${categories.join(',')}`;
+    }
+    if (sources && sources.length > 0) {
+      url += `&sources=${sources.join(',')}`;
+    }
+    return this.http.get(url);
   }
 
   getNewsByCategory (category: string){

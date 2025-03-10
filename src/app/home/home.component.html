@@ -1,7 +1,20 @@
 <h1>Top Headlines</h1>
-<div *ngFor="let article of articles" class="article-card">
-  <h2>{{ article.title }}</h2>
-  <p>{{ article.description }}</p>
-  <a [href]="article.url" target="_blank">Read more</a>
-  <button (click)="saveArticle(article)">Save Article</button>
+<button mat-raised-button color="primary" (click)="refreshNews()">Refresh News</button>
+
+<div *ngIf="loading">
+  <mat-spinner></mat-spinner>
+  <p>Loading news...</p>
+</div>
+
+<div *ngIf="!loading && articles.length === 0">
+  <p>No articles found. Try refreshing the page.</p>
+</div>
+
+<div *ngIf="!loading && articles.length > 0">
+  <div *ngFor="let article of articles" class="article-card">
+    <h2>{{ article.title }}</h2>
+    <p>{{ article.description }}</p>
+    <a [href]="article.url" target="_blank">Read more</a>
+    <button (click)="saveArticle(article)">Save Article</button>
+  </div>
 </div>

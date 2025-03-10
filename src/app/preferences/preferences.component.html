@@ -1,0 +1,10 @@
+<h1>Manage Preferences</h1>
+<div>
+  <h2>Select your favorite categories:</h2>
+  <div *ngFor="let category of categories">
+    <mat-checkbox [checked] = "selectedCategories.includes(category)"(change)="toggleCategory(category)">
+      {{ category }}
+    </mat-checkbox>
+  </div>
+  <button mat-raised-button color="primary" (click)="savePreferences()">Save Preferences</button>
+</div>

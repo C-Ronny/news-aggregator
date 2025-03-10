@@ -56,38 +56,9 @@ export class AuthComponent {
 
 
   //new code
-  // async login() {
-  //   console.log('Logging in with:', { email: this.email, password: this.password });
-  //   const { data, error } = await this.supabase.signIn(this.email, this.password);
-  //   if (error) {
-  //     console.error('Login error:', error);
-  //     this.snackBar.open('Login failed: ' + error.message, 'Close', { duration: 3000 });
-  //   } else {
-  //     console.log('Login successful:', data);
-  //     this.router.navigate(['/']);
-  //   }
-  // }
-  
-  // async signUp() {
-  //   console.log('Signing up with:', { email: this.email, password: this.password });
-  //   const { data, error } = await this.supabase.signUp(this.email, this.password);
-  //   if (error) {
-  //     console.error('Signup error:', error);
-  //     this.snackBar.open('Signup failed: ' + error.message, 'Close', { duration: 3000 });
-  //   } else {
-  //     console.log('Signup successful:', data);
-  //     this.snackBar.open('Signup successful! Please log in.', 'Close', { duration: 3000 });
-  //     this.isLoginMode = true; // Switch to login mode after signup
-  //   }
-  // }
-
-
-  //hardcode test
   async login() {
-    const email = 'ronellecudjoe9@gmail.com'; // Use a valid email
-    const password = 'Ronelle-0202731402-rocu'; // Use a valid password
-    console.log('Logging in with:', { email, password });
-    const { data, error } = await this.supabase.signIn(email, password);
+    console.log('Logging in with:', { email: this.email, password: this.password });
+    const { data, error } = await this.supabase.signIn(this.email, this.password);
     if (error) {
       console.error('Login error:', error);
       this.snackBar.open('Login failed: ' + error.message, 'Close', { duration: 3000 });
@@ -98,10 +69,8 @@ export class AuthComponent {
   }
   
   async signUp() {
-    const email = 'test@example.com'; // Use a valid email
-    const password = 'password123'; // Use a valid password
-    console.log('Signing up with:', { email, password });
-    const { data, error } = await this.supabase.signUp(email, password);
+    console.log('Signing up with:', { email: this.email, password: this.password });
+    const { data, error } = await this.supabase.signUp(this.email, this.password);
     if (error) {
       console.error('Signup error:', error);
       this.snackBar.open('Signup failed: ' + error.message, 'Close', { duration: 3000 });
@@ -111,6 +80,36 @@ export class AuthComponent {
       this.isLoginMode = true; // Switch to login mode after signup
     }
   }
+
+  //hardcode test
+  // async login() {
+  //   const email = 'ronellecudjoe9@gmail.com'; // Use a valid email
+  //   const password = 'Ronelle-0202731402-rocu'; // Use a valid password
+  //   console.log('Logging in with:', { email, password });
+  //   const { data, error } = await this.supabase.signIn(email, password);
+  //   if (error) {
+  //     console.error('Login error:', error);
+  //     this.snackBar.open('Login failed: ' + error.message, 'Close', { duration: 3000 });
+  //   } else {
+  //     console.log('Login successful:', data);
+  //     this.router.navigate(['/']);
+  //   }
+  // }
+  
+  // async signUp() {
+  //   const email = 'test@example.com'; // Use a valid email
+  //   const password = 'password123'; // Use a valid password
+  //   console.log('Signing up with:', { email, password });
+  //   const { data, error } = await this.supabase.signUp(email, password);
+  //   if (error) {
+  //     console.error('Signup error:', error);
+  //     this.snackBar.open('Signup failed: ' + error.message, 'Close', { duration: 3000 });
+  //   } else {
+  //     console.log('Signup successful:', data);
+  //     this.snackBar.open('Signup successful! Please log in.', 'Close', { duration: 3000 });
+  //     this.isLoginMode = true; // Switch to login mode after signup
+  //   }
+  // }
 
   switchMode() {
     this.isLoginMode = !this.isLoginMode;
