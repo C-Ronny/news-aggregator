@@ -28,10 +28,12 @@ export class HomeComponent implements OnInit{
       } else {
         const categories = preferences?.categories || [];
         const sources = preferences?.sources || [];
+        console.log('Fetching news with categories:', categories, 'and sources:', sources); // Log categories and sources
         this.news.getTopHeadlines(categories, sources).subscribe({
           next: (data: any) => {
+            console.log('API response:', data); // Log the API response
             this.articles = data.articles;
-            console.log('Fetched articles:', this.articles);
+            console.log('Fetched articles:', this.articles); // Log the fetched articles
             this.loading = false;
           },
           error: (err) => {

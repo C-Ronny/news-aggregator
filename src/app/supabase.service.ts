@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -123,6 +124,10 @@ export class SupabaseService {
     if (error) {
       console.error('Error signing out:', error.message);
     }
+  }
+
+  authChanges() {
+    return new BehaviorSubject<any>(this.supabase.auth.getUser());
   }
 
 }

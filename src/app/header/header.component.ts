@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
 import { SupabaseService } from '../supabase.service';
 import { CommonModule} from '@angular/common';
+import { BehaviorSubject } from 'rxjs';
+
 
 @Component({
   selector: 'app-header',
@@ -12,18 +14,24 @@ import { CommonModule} from '@angular/common';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
-  isLoggedIn: boolean = false;
+export class HeaderComponent implements OnInit{
+  isLoggedIn$ = new BehaviorSubject<boolean>(false); // reactive state
 
-  constructor(private supabase: SupabaseService, private router: Router) {
-    this.supabase.getUser().then((user) => {
-      this.isLoggedIn = !!user;
+  constructor(private supabase: SupabaseService, private router: Router) {}
+
+  async ngOnInit() {
+    const user = await this.supabase.getUser();
+    this.isLoggedIn$.next(!!user); // Update the state
+
+    // Listen for auth state changes
+    this.supabase.authChanges().subscribe((user) => {
+      this.isLoggedIn$.next(!!user);
     });
   }
 
   async logout() {
     await this.supabase.signOut();
-    this.isLoggedIn = false;
+    this.isLoggedIn$.next(false); // Update the state
     this.router.navigate(['/login']);
   }
 }

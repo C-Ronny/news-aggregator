@@ -19,6 +19,7 @@ export class NewsService {
     if (sources && sources.length > 0) {
       url += `&sources=${sources.join(',')}`;
     }
+    console.log('Fetching news from:', url); // Log the API URL
     return this.http.get(url);
   }
 
