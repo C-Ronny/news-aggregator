@@ -13,12 +13,12 @@ export class NewsService {
 
   getTopHeadlines(categories?: string[], sources?: string[]) {
     let url = `${this.apiUrl}/top-headlines?country=us&apiKey=${this.apiKey}`;
-    if (categories && categories.length > 0) {
-      url += `&category=${categories.join(',')}`;
-    }
-    if (sources && sources.length > 0) {
-      url += `&sources=${sources.join(',')}`;
-    }
+    // if (categories && categories.length > 0) {
+    //   url += `&category=${categories.join(',')}`;
+    // }
+    // if (sources && sources.length > 0) {
+    //   url += `&sources=${sources.join(',')}`;
+    // }
     console.log('Fetching news from:', url); // Log the API URL
     return this.http.get(url);
   }
