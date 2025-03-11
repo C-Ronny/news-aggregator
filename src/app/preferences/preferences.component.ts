@@ -13,7 +13,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   styleUrl: './preferences.component.scss'
 })
 export class PreferencesComponent implements OnInit{
-  categories: string[] = ['technology', 'sports', 'business', 'entertainment', 'health'];
+  categories: string[] = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'];
   selectedCategories: string[] = [];
 
   constructor (private supabase: SupabaseService, private snackBar: MatSnackBar) {}
