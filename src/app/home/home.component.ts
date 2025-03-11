@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit{
           next: (data: any) => {
             console.log('API response:', data); // Log the API response
             this.articles = data.articles;
-            console.log('Fetched articles:', this.articles); // Log the fetched articles
+            console.log('Fetched articles:', this.articles); 
             this.loading = false;
           },
           error: (err) => {

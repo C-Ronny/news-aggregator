@@ -18,7 +18,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 export class AuthComponent {
   email: string = '';
   password: string = '';
-  isLoginMode: boolean = true;
+  // isLoginMode: boolean = true;
+  isLoginMode: boolean = false;
 
   constructor(
     private supabase: SupabaseService,
