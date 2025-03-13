@@ -54,8 +54,4 @@ export class PreferencesComponent implements OnInit{
       this.selectedCategories.push(category);
     }
   }
-
-
 }
-
-
