@@ -129,5 +129,4 @@ export class SupabaseService {
   authChanges() {
     return new BehaviorSubject<any>(this.supabase.auth.getUser());
   }
-
 }
