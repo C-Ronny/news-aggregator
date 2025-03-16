@@ -1,7 +1,23 @@
 <h1>Saved Articles</h1>
-<div *ngFor="let article of savedArticles" class="article-card">
+
+<!-- <div *ngFor="let article of savedArticles" class="article-card">
   <h2>{{ article.title }}</h2>
   <p>{{ article.description }}</p>
   <a [href]="article.url" target="_blank">Read more</a>
   <button (click)="deleteArticle(article.id)">Delete</button>
+</div> -->
+
+<div *ngIf="loading">
+  <p>Loading saved articles...</p>
+</div>
+<div *ngIf="!loading && savedArticles.length === 0">
+  <p>No saved articles found.</p>
+</div>
+<div *ngIf="!loading && savedArticles.length > 0">
+  <div *ngFor="let article of savedArticles" class="article-card">
+    <h2>{{ article.title }}</h2>
+    <p>{{ article.description }}</p>
+    <a [href]="article.url" target="_blank">Read more</a>
+    <button (click)="deleteArticle(article.id)">Delete</button>
+  </div>
 </div>

@@ -18,8 +18,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 export class AuthComponent {
   email: string = '';
   password: string = '';
-  // isLoginMode: boolean = true;
-  isLoginMode: boolean = false;
+  isLoginMode: boolean = true;
+  // isLoginMode: boolean = false;
 
   constructor(
     private supabase: SupabaseService,
@@ -27,12 +27,29 @@ export class AuthComponent {
     private router: Router
   ) {}
 
+  // async onSubmit() {
+  //   console.log('Form submitted in mode:', this.isLoginMode ? 'Login' : 'Sign Up');
+  //   if (this.isLoginMode) {
+  //     await this.login();
+  //   } else {
+  //     await this.signUp();
+  //   }
+  // }
+
+  loading: boolean = false;
+
   async onSubmit() {
+    if (this.loading) return;
+    this.loading = true;
     console.log('Form submitted in mode:', this.isLoginMode ? 'Login' : 'Sign Up');
-    if (this.isLoginMode) {
-      await this.login();
-    } else {
-      await this.signUp();
+    try {
+      if (this.isLoginMode) {
+        await this.login();
+      } else {
+        await this.signUp();
+      }
+    } finally {
+      this.loading = false;
     }
   }
 

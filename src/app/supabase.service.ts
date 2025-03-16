@@ -29,31 +29,31 @@ export class SupabaseService {
     return { data, error };
   }
 
-  async signUp(email: string, password: string) {
-    const { data, error } = await this.supabase.auth.signUp({ email, password });
-    return { data, error };
-  }
-
-  async signIn(email: string, password: string) {
-    const { data, error } = await this.supabase.auth.signInWithPassword({ email, password });
-    return { data, error };
-  }
+  // async signUp(email: string, password: string) {
+  //   const { data, error } = await this.supabase.auth.signUp({ email, password });
+  //   return { data, error };
+  // }
 
   // async signIn(email: string, password: string) {
-  //   const { data, error } = await this.supabase.auth.signInWithPassword({
-  //     email: email,
-  //     password: password
-  //   });
+  //   const { data, error } = await this.supabase.auth.signInWithPassword({ email, password });
   //   return { data, error };
   // }
+
+  async signIn(email: string, password: string) {
+    const { data, error } = await this.supabase.auth.signInWithPassword({
+      email: email,
+      password: password
+    });
+    return { data, error };
+  }
   
-  // async signUp(email: string, password: string) {
-  //   const { data, error } = await this.supabase.auth.signUp({
-  //     email: email,
-  //     password: password
-  //   });
-  //   return { data, error };
-  // }
+  async signUp(email: string, password: string) {
+    const { data, error } = await this.supabase.auth.signUp({
+      email: email,
+      password: password
+    });
+    return { data, error };
+  }
 
   async fetchSavedArticles(userId: string) {
     const { data, error } = await this.supabase

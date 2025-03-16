@@ -18,8 +18,12 @@ export class PreferencesComponent implements OnInit{
 
   constructor (private supabase: SupabaseService, private snackBar: MatSnackBar) {}
 
+  loading: boolean = false;
+
   async ngOnInit() {
+    this.loading = true;
     await this.fetchPreferences();
+    this.loading = false;
   }
 
   async fetchPreferences(){
@@ -35,6 +39,7 @@ export class PreferencesComponent implements OnInit{
   }
 
   async savePreferences(){
+    this.loading = true;
     const user = await this.supabase.getUser();
     if (user){
       const { data, error } = await this.supabase.updatePreferences(user.id, this.selectedCategories);
@@ -45,6 +50,7 @@ export class PreferencesComponent implements OnInit{
         this.snackBar.open('Preferences saved successfully!', 'Close', { duration: 3000 });
       }
     }
+    this.loading = false;
   }
 
   toggleCategory(category: string) {
